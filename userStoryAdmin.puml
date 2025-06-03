@@ -1,0 +1,89 @@
+@startuml
+left to right direction
+
+actor admin as A
+
+rectangle "userStory" {
+    usecase "arriver et visiter le site" as uc1
+    usecase "lire la description du site et le principe"  as uc2
+    usecase "accepter la geolocalisation"  as uc3
+    usecase "rechercher un fermier dans une zone délimitée"  as uc4
+    usecase "rechercher un fermier en fonction du produit"  as uc5
+    usecase "regarder la description d'une ferme, ses images/produits et sa localisation"  as uc6
+    usecase "contacter un admin"  as uc7
+    usecase "lire les mentions légales"  as uc8
+    usecase "modifier ses identifiants" as uc9
+    usecase "modifier son mot de passe" as uc10
+    usecase "modifier les parametres de son compte" as uc11
+    usecase "ajouter des fermes en favoris" as uc12
+    usecase "supprimer des photos, descriptions" as uc13
+    usecase "supprimer un user ou fermier" as uc14
+    usecase "modifier des informations du site" as uc15
+    usecase "valider l'inscription des fermes" as uc16
+}
+
+A --> uc1
+A --> uc2
+A --> uc3
+A --> uc4
+A --> uc5
+A --> uc6
+A --> uc7
+A --> uc8
+A --> uc9
+A --> uc10
+A --> uc11
+A --> uc12
+A --> uc13
+A --> uc14
+A --> uc15
+A --> uc16
+
+note right of uc1
+    l admin va pouvoir se rendre sur le site et visiter celui ci
+end note
+note right of uc2
+    l admin va prendre connaissance de l utiliter du site et sa démarche
+end note
+note right of uc3
+    l admin va pouvoir accepter la géolocalisation afin de faciliter la recherche autour de lui ou non
+end note
+note right of uc4
+    l admin va pouvoir effectuer la recherche d une ferme en y mettant une limite en km a partir d une ville ou d une adresse
+end note
+note right of uc5
+    l admin va pourvoir effectuer la recherche d une ferme en fonction du type de produit qu il recherche
+end note
+note right of uc6
+    l admin va pouvoir regarder la description d une ferme, voir ses images et les produits de celui ci
+end note
+note right of uc7
+    l admin va pouvoir contacter un admin via un formulaire de contact 
+end note
+note right of uc8
+    l admin va pouvoir prendre note des mentions légales du site
+end note
+note right of uc9
+    l admin va pouvoir modifier ses identifiants
+end note
+note right of uc10
+    l admin va pouvoir modifier son mot de passe
+end note
+note right of uc11
+    l admin va pouvoir modifier ses parametres de compte tel que les notifications
+end note
+note right of uc12
+    l admin va pouvoir ajouter des fermes en favoris pour suivre l actualités de celle ci 
+end note
+note right of uc13
+    l admin va pouvoir supprimer des photos ou descriptions de la ferme qui ne sont pas conforme aux régléments 
+end note
+note right of uc14
+    l admin va pouvoir supprimer un user ou une ferme
+end note
+note right of uc15
+    l admin va pouvoir apporter des modifications au site
+end note
+note right of uc16
+    l admin va pouvoir valider l inscription des fermes après vérification de leur siret afin d être sur qu il s agit bien d une ferme ou d un agriculteur
+end note

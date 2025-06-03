@@ -1,0 +1,59 @@
+@startuml
+left to right direction
+
+actor visiteur as V
+
+rectangle "userStory" {
+    usecase "arriver et visiter le site" as uc1
+    usecase "lire la description du site et le principe"  as uc2
+    usecase "accepter la geolocalisation"  as uc3
+    usecase "rechercher un fermier dans une zone délimitée"  as uc4
+    usecase "rechercher un fermier en fonction du produit"  as uc5
+    usecase "regarder la description d'une ferme, ses images/produits"  as uc6
+    usecase "contacter un admin"  as uc7
+    usecase "se connecter"  as uc8
+    usecase "lire les mentions légales"  as uc9
+    usecase "s'inscrire" as uc10
+}
+
+V --> uc1
+V --> uc2
+V --> uc3
+V --> uc4
+V --> uc5
+V --> uc6
+V --> uc7
+V --> uc8
+V --> uc9
+V --> uc10
+
+note right of uc1
+    le visiteur va pouvoir se rendre sur le site et visiter celui ci
+end note
+note right of uc2
+    le visiteur va prendre connaissance de l utiliter du site et sa démarche
+end note
+note right of uc3
+    le visiteur va pouvoir accepter la géolocalisation afin de faciliter la recherche autour de lui ou non
+end note
+note right of uc4
+    le visiteur va pouvoir effectuer la recherche d une ferme en y mettant une limite en km a partir d une ville ou d une adresse
+end note
+note right of uc5
+    le visiteur va pourvoir effectuer la recherche d une ferme en fonction du type de produit qu il recherche
+end note
+note right of uc6
+    le visiteur va pouvoir regarder la description d une ferme, voir ses images et les produits de celui ci
+end note
+note right of uc7
+    le visiteur va pouvoir contacter un admin via un formulaire de contact 
+end note
+note right of uc8
+    le visiteur va pouvoir se connecter avec ses identifiants
+end note
+note right of uc9
+    le visiteur va pouvoir prendre note des mentions légales du site
+end note
+note right of uc10
+    le visiteur va pouvoir se créer un compte sur le site
+end note

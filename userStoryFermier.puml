@@ -1,0 +1,104 @@
+@startuml
+left to right direction
+
+actor fermier as F
+
+rectangle "userStory" {
+    usecase "arriver et visiter le site" as uc1
+    usecase "lire la description du site et le principe"  as uc2
+    usecase "accepter la geolocalisation"  as uc3
+    usecase "rechercher un fermier dans une zone délimitée"  as uc4
+    usecase "rechercher un fermier en fonction du produit"  as uc5
+    usecase "regarder la description d'une ferme, ses images/produits et sa localisation"  as uc6
+    usecase "contacter un admin"  as uc7
+    usecase "lire les mentions légales"  as uc8
+    usecase "modifier ses identifiants" as uc9
+    usecase "modifier son mot de passe" as uc10
+    usecase "supprimer son compte" as uc11
+    usecase "modifier les parametres de son compte" as uc12
+    usecase "ajouter des fermes en favoris" as uc13
+    usecase "ajouter, modifier, supprimer une description" as uc14
+    usecase "ajouter, modifier, supprimer des photos" as uc15
+    usecase "ajouter, modifier, supprimer des horaires" as uc16
+    usecase "ajouter, modifier, supprimer adresse ou point de vente" as uc17
+    usecase "ajouter, modifier, supprimer ses modes de paiment" as uc18
+    usecase "choisir une ou plusieurs catégorie" as uc19
+}
+
+F --> uc1
+F --> uc2
+F --> uc3
+F --> uc4
+F --> uc5
+F --> uc6
+F --> uc7
+F --> uc8
+F --> uc9
+F --> uc10
+F --> uc11
+F --> uc12
+F --> uc13
+F --> uc14
+F --> uc15
+F --> uc16
+F --> uc17
+F --> uc18
+F --> uc19
+
+note right of uc1
+    le fermier va pouvoir se rendre sur le site et visiter celui ci
+end note
+note right of uc2
+    le fermier va prendre connaissance de l utiliter du site et sa démarche
+end note
+note right of uc3
+    le fermier va pouvoir accepter la géolocalisation afin de faciliter la recherche autour de lui ou non
+end note
+note right of uc4
+    le fermier va pouvoir effectuer la recherche d une ferme en y mettant une limite en km a partir d une ville ou d une adresse
+end note
+note right of uc5
+    le fermier va pourvoir effectuer la recherche d une ferme en fonction du type de produit qu il recherche
+end note
+note right of uc6
+    le fermier va pouvoir regarder la description d une ferme, voir ses images et les produits de celui ci
+end note
+note right of uc7
+    le fermier va pouvoir contacter un admin via un formulaire de contact 
+end note
+note right of uc8
+    le fermier va pouvoir prendre note des mentions légales du site
+end note
+note right of uc9
+    le fermier va pouvoir modifier ses identifiants
+end note
+note right of uc10
+    le fermier va pouvoir modifier son mot de passe
+end note
+note right of uc11
+    le fermier va pouvoir supprimer son compte
+end note
+note right of uc12
+    le fermier va pouvoir modifier ses parametres de compte tel que les notifications
+end note
+note right of uc13
+    le fermier va pouvoir ajouter des fermes en favoris pour suivre l actualités de celle ci 
+end note
+note right of uc14
+    le fermier va pouvoir ajouter, modifier ou supprimer la description de sa ferme 
+end note
+note right of uc15
+    le fermier va pouvoir ajouter, modifier ou supprimer des photos de ses produits, de sa ferme
+end note
+note right of uc16
+    le fermier va pouvoir ajouter, modifier ou supprimer les horaires de son point de vente
+end note
+note right of uc17
+    le fermier va pouvoir ajouter, modifier ou supprimer l adresse de sa ferme ou de son ou ses point de vente
+end note
+note right of uc18
+    le fermier va pouvoir ajouter, modifier ou supprimer les moyens de paiment mis à disposition de ses clients
+end note
+note right of uc19
+    le fermier va pouvoir choisir une ou plusieurs catégorie de produit qu il met en vente
+end note

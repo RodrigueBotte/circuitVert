@@ -1,0 +1,83 @@
+@startuml
+left to right direction
+
+actor visiteur as V #LightBlue
+actor user as U #LightGreen
+actor farmer as F #LightSalmon
+actor admin as A #LightGoldenRodYellow
+
+package "circuitVert" {
+    usecase "arriver et naviguer sur le site" as uc1 #LightBlue
+    usecase "lire la description du site et le principe" as uc2 #LightBlue
+    usecase "accepter la geolocalisation" as uc3 #LightBlue
+    usecase "rechercher un fermier dans une zone délimitée" as uc4 #LightBlue
+    usecase "rechercher un fermier en fonction du produit vendu" as uc5 #LightBlue
+    usecase "regarder les description d'une fermer, ses images/produits" as uc6 #LightBlue
+    usecase "contacter un admin" as uc7 #LightBlue
+    usecase "lire les mentions légales" as uc8 #LightBlue
+    usecase "s'inscrire" as uc9 #LightBlue
+    usecase "connexion" as uc10 #LightBlue
+    
+    usecase "modifier ses identifiants" as uc11 #LightGreen
+    usecase "modifier son mot de passe" as uc12 #LightGreen
+    usecase "supprimer son compte" as uc13 #LightGreen
+    usecase "modifier les parametres de son compte" as uc14 #LightGreen
+    usecase "ajouter des fermes en favoris" as uc15 #LightGreen
+
+    usecase "ajouter, modifier, supprimer sa description" as uc16 #LightSalmon
+    usecase "ajouter, modifier, supprimer des photos" as uc17 #LightSalmon
+    usecase "ajouter, modifier, supprimer des des horaires" as uc18 #LightSalmon
+    usecase "ajouter, modifier, supprimer une adresse ou point de vente" as uc19 #LightSalmon
+    usecase "ajouter, modifier, supprimer ses modes de paiement" as uc20 #LightSalmon
+    usecase "choisir une ou plusieurs catégorie pour ses produits" as uc21 #LightSalmon
+
+    usecase "supprimer un user ou fermier" as uc22 #LightGoldenRodYellow
+    usecase "modifier des informations du site" as uc23 #LightGoldenRodYellow
+    usecase "valider l'incription des fermes" as uc24 #LightGoldenRodYellow
+}
+
+V --> uc1
+V --> uc2
+V --> uc3
+V --> uc4
+V --> uc5
+V --> uc6
+V --> uc7
+V --> uc8
+V --> uc9
+V --> uc10
+
+U --> uc11
+U --> uc12
+U --> uc13
+U --> uc14
+U --> uc15
+
+F --> uc16
+F --> uc17
+F --> uc18
+F --> uc19
+F --> uc20
+F --> uc21
+
+A --> uc22
+A --> uc23
+A --> uc24
+
+U->V :herite
+F->U :herite
+A->F :herite
+
+uc11 ..> uc10 :include
+uc12 ..> uc10 :include
+uc13 ..> uc10 :include
+uc14 ..> uc10 :include
+uc15 ..> uc10 :include
+uc16 ..> uc10 :include
+uc17 ..> uc10 :include
+uc18 ..> uc10 :include
+uc19 ..> uc10 :include
+uc20 ..> uc10 :include
+uc21 ..> uc10 :include
+uc22 ..> uc10 :include
+uc23 ..> uc10 :include
