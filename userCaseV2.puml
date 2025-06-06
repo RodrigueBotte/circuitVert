@@ -1,0 +1,105 @@
+@startuml CircuitVert v2
+left to right direction
+
+actor visiteur as V #LightBlue
+actor user as U #LightGreen
+actor farmer as F #LightSalmon
+actor admin as A #LightGoldenRodYellow
+
+package "circuitVert" {
+    usecase "arriver et naviguer sur le site" as uc1 #LightBlue
+    usecase "lire la description du site et le principe" as uc2 #LightBlue
+    usecase "accepter la geolocalisation" as uc3 #LightBlue
+    usecase "rechercher un fermier dans une zone délimitée" as uc4 #LightBlue
+    usecase "rechercher un fermier en fonction du produit vendu" as uc5 #LightBlue
+    usecase "regarder les description d'une fermer, ses images/produits" as uc6 #LightBlue
+    usecase "contacter un admin" as uc7 #LightBlue
+    usecase "lire les mentions légales" as uc8 #LightBlue
+    usecase "s'inscrire" as uc9 #LightBlue
+    usecase "connexion" as uc10 #LightBlue
+    
+    usecase "supprimer son compte" as uc11 #LightGreen
+    usecase "modifier les parametres de son compte" as uc12 #LightGreen
+    usecase "ajouter des fermes en favoris" as uc13 #LightGreen
+
+    usecase "ajouter une description" as uc14 #LightSalmon
+    usecase "ajouter une photo" as uc15 #LightSalmon
+    usecase "ajouter des horaires" as uc16 #LightSalmon
+    usecase "ajouter une adresse ou point de vente" as uc17 #LightSalmon
+    usecase "ajouter ses modes de payement" as uc18 #LightSalmon
+    usecase "choisir une ou plusieurs catégorie pour ses produits" as uc19 #LightSalmon
+
+    usecase "supprimer un user ou fermier" as uc20 #LightGoldenRodYellow
+    usecase "modifier des informations du site" as uc21 #LightGoldenRodYellow
+    usecase "valider l'incription des fermes" as uc22 #LightGoldenRodYellow
+
+    usecase "modifier son pseudo" as uc23
+    usecase "modifier son mot de passe" as uc24
+    usecase "modifier son email" as uc25
+
+    usecase "modifier une description" as uc26
+    usecase "supprimer une description" as uc27
+
+    usecase "modifier une photo" as uc28
+    usecase "supprimer une photo" as uc29
+
+    usecase "modifier un horaire" as uc30
+    usecase "supprimer un horaire" as uc31
+
+    usecase "modifier une adresse ou point de vente" as uc32
+    usecase "supprimer une adresse ou point de vente" as uc33
+
+    usecase "modifier un mode de payement" as uc34
+    usecase "supprimer un mode de payement" as uc35
+}
+
+V --> uc1
+V --> uc2
+V --> uc3
+V --> uc4
+V --> uc5
+V --> uc6
+V --> uc7
+V --> uc8
+V --> uc9
+V --> uc10
+
+U --> uc11
+F --> uc11
+
+U -> V :herite
+F -> U :herite
+A -> F :herite
+
+uc11 ..> uc10 #Red :required
+
+uc12 ..> uc10 #Violet :include
+uc13 ..> uc10 #Violet :include
+uc14 ..> uc10 #Violet :include
+uc15 ..> uc10 #Violet :include
+uc16 ..> uc10 #Violet :include
+uc17 ..> uc10 #Violet :include
+uc18 ..> uc10 #Violet :include
+uc19 ..> uc10 #Violet :include
+uc20 ..> uc10 #Violet :include
+uc21 ..> uc10 #Violet :include
+uc22 ..> uc10 #Violet :include
+
+uc23 ..> uc12 :extend
+uc24 ..> uc12 :extend
+uc25 ..> uc12 :extend
+
+uc26 ..> uc14 :extend
+uc27 ..> uc14 :extend
+
+uc28 ..> uc15 :extend
+uc29 ..> uc15 :extend
+
+uc30 ..> uc16 :extend
+uc31 ..> uc16 :extend
+
+uc32 ..> uc17 :extend
+uc33 ..> uc17 :extend
+
+uc34 ..> uc18 :extend
+uc35 ..> uc18 :extend

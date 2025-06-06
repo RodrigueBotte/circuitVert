@@ -1,0 +1,25 @@
+@startuml ajout image ferme
+
+|Utilisateur|
+start
+if (connecté?) then (non)
+    :Renvoie page connection;
+    stop
+else (oui)
+    
+endif
+:Clique modification photo;
+while (format respecté?) is (non)
+    :Message erreur;
+endwhile (oui) 
+
+:ajout titre;
+while (champs vide?) is (oui)
+    :Message erreur;
+endwhile (non) 
+:Validation de la photo;
+|Serveur|
+:Message de validation d ajout;
+end
+
+@enduml

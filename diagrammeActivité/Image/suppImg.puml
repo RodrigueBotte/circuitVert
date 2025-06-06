@@ -1,0 +1,26 @@
+@startuml ajout image ferme
+
+|Utilisateur|
+start
+if (connecté?) then (non)
+    :Renvoie page connection;
+    stop
+else (oui)
+    
+endif
+:Clique supprimer photo;
+:Message: etes vous sur?;
+if (confirmation?) then (non)
+    :Retour page description;
+    stop
+else (oui)
+endif
+|Serveur|
+:Suppression de la photo;
+:Suppresion du titre;
+:Message de validation;
+|Utilisateur|
+:Renvoie page de description;
+end
+
+@enduml

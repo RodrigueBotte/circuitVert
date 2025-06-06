@@ -1,0 +1,81 @@
+@startuml Modification du compte
+
+|Utilisateur|
+start
+if (connecté?) then (non)
+    :Redirection page connexion;
+    stop
+else (oui)
+endif
+:Page compte;
+:Clique modifiction de compte;
+
+:Clique sur la zone du nom;
+if (nom vide?) then (oui)
+    :Message d erreur;
+    stop
+elseif (nom changé?) then (oui)
+    :Demande de validation;
+    if (validation?) then (oui)
+        |Serveur|
+        :Changement du nom;
+        :Message validant le changement;
+        stop
+    else (non)
+        |Utilisateur|
+        :Remise de l ancien nom;
+    endif
+else (non)
+endif
+
+:Clique sur la zone de l email;
+if (email vide?) then (oui)
+    :Message d erreur;
+    stop
+elseif (email changé?) then (oui)
+    :Demande de validation;
+    if (validation?) then (oui)
+        |Serveur|
+        :Envoie email de validation de changement;
+        if (validation email?) then (non)
+            :Annulation du changement d email;
+            :Remise ancien email;
+            stop
+        else (oui)
+            :Validation du changement email;
+            :Changement du nom;
+        endif
+        :Message validant le changement;
+        stop
+    else (non)
+        |Utilisateur|
+        :Remise de l ancien email;
+    endif
+else (non)
+endif
+
+:Clique sur la zone du mdp;
+if (mdp vide?) then (oui)
+    :Message d erreur;
+    stop
+elseif (mdp changé?) then (oui)
+    if (mdpbis identique?) then (non)
+        :Message erreur;
+        stop
+    else (oui)
+        if (validation?) then (oui)
+            |Serveur|
+            :Changement du mdp;
+            :Message validant le changement;
+            stop
+        else (non)
+            |Utilisateur|
+            :Remise de l ancien mdp;
+        endif
+    endif
+else (non)
+endif
+
+end
+
+@enduml

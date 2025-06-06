@@ -1,0 +1,28 @@
+@startuml Diagramme Activités Connexion
+
+|Utilisateur|
+start 
+:Arrive sur la page de connexion;
+if (possède un compte?) then (non)
+    :Clique sur le bouton inscription;
+    :Rentre son pseudo;
+    :Rentre son email;
+    |Serveur|
+    while (email deja enregistré?) is (oui)
+        :Message d erreur;
+    endwhile (non) 
+    |Utilisateur|
+    :Rentre son mdp;
+else (oui)
+endif
+:Rentre ses identifiants;
+|Serveur|
+while (email et mdp correspondant?) is (non)
+    :Message d erreur;
+endwhile (oui) 
+|Utilisateur|
+:Se connecte;
+:Rediriger la page profil;
+end
+
+@enduml

@@ -1,0 +1,34 @@
+@startuml Supression de compte
+
+|Utilisateur|
+start 
+
+:Clique sur page compte;
+if (connecté?) then (non)
+    :Redirection page connexion;
+    stop
+else (oui)
+endif
+
+:Clique sur supprimer son compte;
+:Message de confirmation du compte;
+if (validation?) then (oui)
+    |Serveur|
+    if (compte entreprise?) then (oui)
+        :Suppresion de la page de l entreprise;
+        :Suppresion du compte;
+        |Utilisateur|
+        :Renvoie à la page d accueil;
+        end
+    else (non)
+        |Serveur|
+        :Supression du compte;
+        |Utilisateur|
+        :Renvoie à la page d accueil;
+        end
+    endif
+else (non)
+endif
+
+end
+@enduml
