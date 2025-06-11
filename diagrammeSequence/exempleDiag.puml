@@ -1,0 +1,35 @@
+@startuml diagramme sequence gestion film
+
+actor User as U
+participant Application as App
+participant Serveur as S
+participant BaseDeDonnees as B
+
+U -> App :ajoute un film
+App -> S :demande ajout un film
+S -> B :enregistre un film
+B --> S :confirme l ajout d un film
+S --> App :message de confirmation ajout film
+App --> U :affiche un film
+
+U -> App :modifie un film
+App -> S :demande de modification du film
+S -> B :modifie un film
+B --> S :confirme la modification d un film
+S --> App :message de confirmation de mofication film
+App --> U :affiche un film
+
+U -> App :supprime un film
+App -> S :demande suppression un film
+S -> B :supprime un film
+B --> S :confirme la suppresion d un film
+S --> App :message de confirmation de suppression film
+App --> U :renvoie page général des films
+
+U -> App :clique sur un film
+App -> S :demande si le film existe
+S -> B :trouve un film
+B --> S :confirme l existance du film
+S --> App :message de confirmation du film
+App --> U :affiche un film
+
