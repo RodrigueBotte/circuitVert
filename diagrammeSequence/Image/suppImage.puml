@@ -1,0 +1,14 @@
+@startuml diagramme sequence suppression image
+
+actor User as U
+participant Application as App
+participant Serveur as S
+participant BaseDonnees as Bdd
+
+U -> App :Clique pour valider la suppression de l'image
+App -> S :Demande de suppression image
+S -> Bdd :Verification de suppression image
+
+Bdd --> S :Validation de suppression image
+S --> App :Confirmation de suppression image
+App --> U :Redirection vers la page produit

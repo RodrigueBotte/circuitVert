@@ -1,0 +1,86 @@
+PUML 
+@startuml TableZen
+title "Diagramme de classes"
+left to right direction
+class U as "Utilisateur"{
+    -nom : string
+    -picture : string
+    -code : int
+    -role : string
+    +seConnecter()
+    +modifierCommande()
+    +modifierTable()
+    +modifierCouverts()
+}
+class Ch as "Chef"{
+    +ajouterProduit()
+    +supprimerProduit()
+    +modifierProduit()
+    +ajouterCatégorie()
+    +supprimerCatégorie()
+    +modifierCatégorie()
+    +ajouterServeur()
+    +supprimerServeur()
+    +modifierServeur()
+}
+class A as "Administrateur"{
+    +ajouterChef()
+    +modifierChef()
+    +supprimerChef()
+}
+class T as "Table"{
+    -nom : string
+}
+class L as "Lieu"{
+    -nom : string
+}
+class Mod as "Modifie"{
+    -date : date
+}
+class C as "Commande"{
+    -reference : string
+    -date : date
+    -prixTotal : double
+    -couverts : int
+    -solde : date
+}
+class DD as "Détail de Commande"{
+    -quantité : int
+    -prix : double
+}
+class P as "Produit"{
+    -nom : string
+    -prix : double
+    -image : string
+    -description : string
+    -allergènes : string
+}
+class Cat as "Catégorie"{
+    -nom : string
+}
+class Tik as "Ticket"{
+    -pdf : string
+}
+class S as "Support"{
+    -nom : string
+    -prenom : string
+    -email : string
+    -téléphone : string
+    -société : string
+    -message : string
+    -date : date
+}
+
+Ch "1" <|-- "1" A : hérite
+U "1" <|-- "1" Ch : hérite
+T "0..*" -- "1" L : est située
+T "1" -- "0..*" C : a
+C "1..*" -- "1..*" P : contient
+(C, P) .. DD
+U "1..*" -- "1..*" C : modifie
+(C, U) .. Mod
+P "1..*" -- "1" Cat : selectionne
+C "1" -- "0..1" Tik : Récapitule
+Ch "1" -- "0..*" P : gère
+U "1" -- "0..*" S : contacte
+@enduml

@@ -1,0 +1,53 @@
+@startuml CircuitVert
+
+title "Diagramme de classes CircuitVert"
+left to right direction
+
+class V as "Visitor"{
+    +inscription()
+    +seConnecter()
+    +rechercherFermier()
+    +activeGeolocalisation()
+    +contactAdmin()
+}
+
+class U as "Utilisateur"{
+    -nom : string
+    -email : string
+    -password: string
+    +ajouterFavoris()
+    +modifCompte()
+}
+
+class F as "Farmer"{
+    +ajout/supp/modifDesc()
+    +ajout/supp/modifPhoto()
+    +ajout/supp/modifHoraire()
+    +ajout/supp/modifAdresse()
+    +ajout/supp/modifpaiement()
+    +choixCatProduit()
+}
+class Desc as "Description"{
+    -nom entreprise: string
+    -photo : string
+    -horaire : int
+    -adresse : string
+    -moyenPaiement : string
+}
+
+class Supp as "Suppression de compte"{
+    +supprimerCompte()
+}
+
+class A as "Admin"{
+    +supprimerUser()
+    +modifierSite()
+    +validerInscFarmer()
+}
+
+V "1" <|-- "1" U :herite
+U "1" <|-- "1" F :herite
+F "1" <|-- "1" A :herite
+Supp "1" --> "1" U :extend
+Supp "1" --> "1" F :extend
+Desc "1" --> "1" F :information

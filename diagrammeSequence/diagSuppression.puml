@@ -1,0 +1,14 @@
+@startuml diagramme sequence suppression
+
+actor User as U
+participant Application as App
+participant Serveur as S
+participant BaseDonnees as Bdd
+
+U -> App :Clique sur suppresion de compte
+App -> S :Demande de suppression
+S -> Bdd :Verification de suppression
+
+Bdd --> S :Validation de la suppression
+S --> App :Confirmation la suppression
+App --> U :Redirection vers la page d'accueil

@@ -1,0 +1,14 @@
+@startuml diagramme sequence inscription
+
+actor User as U
+participant Application as App
+participant Serveur as S
+participant BaseDonnees as Bdd
+
+U -> App :Entre ses identifiants d'incription
+App -> S :Demande d'inscription
+S -> Bdd :Verification d'inscription
+
+Bdd --> S :Validation de l'inscription
+S --> App :Confirmation l'inscription
+App --> U :Redirection vers la page pour se connecter

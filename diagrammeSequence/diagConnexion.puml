@@ -1,0 +1,14 @@
+@startuml diagramme sequence connexion
+
+actor User as U
+participant Application as App
+participant Serveur as S
+database BaseDonnees as Bdd
+
+U -> App :Entre ses identifiants
+App -> S :Demande de connexion
+S -> Bdd :Verification de connexion
+
+Bdd --> S :Validation de la connexion
+S --> App :Confirmation la connexion
+App --> U :Redirection vers la page profil

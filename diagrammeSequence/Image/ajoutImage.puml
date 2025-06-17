@@ -1,0 +1,14 @@
+@startuml diagramme sequence ajout image
+
+actor User as U
+participant Application as App
+participant Serveur as S
+participant BaseDonnees as Bdd
+
+U -> App :Clique pour valider l'ajout de l'image
+App -> S :Demande d'ajout image
+S -> Bdd :Verification d'ajout image
+
+Bdd --> S :Validation d'ajout image
+S --> App :Confirmation d'ajout image
+App --> U :Redirection vers la page produit
