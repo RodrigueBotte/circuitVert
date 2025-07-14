@@ -1,0 +1,29 @@
+@startuml diagramme de deploiement
+left to right direction
+title Diagramme de Déploiement
+
+node "Client" as Cl {
+    component Browser as BR
+}
+node "Serveur Web" as SW {
+    component nginx 
+    component PHP as PHP 
+    artifact Symfony
+    
+}
+database "Base de Données" as DB {
+    component MySQL 
+}
+node "Messagerie" {
+    component mailto as MSG
+}
+
+Cl -- SW :https
+nginx ..> PHP :execute
+PHP ..> Symfony :utilse
+Symfony -> MySQL :ORM doctrine
+SW -- DB: TCP 
+SW -- MSG :SMTP
+
+
+@enduml
