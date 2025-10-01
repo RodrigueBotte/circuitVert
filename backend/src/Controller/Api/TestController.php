@@ -16,4 +16,14 @@ class TestController extends AbstractController
             'user' => $this->getUser()->getUserIdentifier(),
         ]);
     }
+
+    #[Route('/api/pro-only', name: 'api_pro_only', methods: ['GET'])]
+    public function proOnlyRoute(): JsonResponse
+    {
+        $this->denyAccessUnlessGranted('ROLE_PRO');
+
+        return $this->json([
+            'message' => 'Bienvenue cher professionnel ✅'
+        ]);
+    }
 }

@@ -171,4 +171,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?ProfessionalInfo $professionalInfo = null;
+
+    // getter
+    public function getProfessionalInfo(): ?ProfessionalInfo
+    {
+        return $this->professionalInfo;
+    }
+
+    // setter
+    public function setProfessionalInfo(ProfessionalInfo $professionalInfo): self
+    {
+        $this->professionalInfo = $professionalInfo;
+        return $this;
+    }
 }
