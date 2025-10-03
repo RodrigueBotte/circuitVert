@@ -30,7 +30,7 @@ final class ProfessionalInfoController extends AbstractController
     #[IsGranted('ROLE_PRO')]
     public function Create(Request $rq, EntityManagerInterface $em): JsonResponse {
 
-        // On indique que $user es une instance de User
+        // On indique que $user est une instance de User
         /** @var User $user */
         $user = $this->getUser();
 

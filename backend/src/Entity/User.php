@@ -7,6 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -44,6 +46,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private bool $isVerified = false;
+
+    // Création d'un table associative via la relation many to many
+    #[ORM\ManyToMany(targetEntity: ProfessionalInfo::class)]
+    #[ORM\JoinTable(name: 'user_favorites')]
+    private Collection $favorites;
+
+    public function __construct()
+    {
+        $this->favorites = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -149,7 +161,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __serialize(): array
     {
         $data = (array) $this;
-        $data["\0".self::class."\0password"] = hash('crc32c', $this->password);
+        $data["\0" . self::class . "\0password"] = hash('crc32c', $this->password);
 
         return $data;
     }
@@ -186,5 +198,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->professionalInfo = $professionalInfo;
         return $this;
+    }
+
+    /** @return Collection<int, ProfessionalInfo> */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(ProfessionalInfo $pi): self
+    {
+        if (!$this->favorites->contains($pi)) {
+            $this->favorites->add($pi);
+            if (method_exists($pi, 'addFavoritedBy')) {
+                $pi->addFavoritedBy($this);
+            }
+        }
+        return $this;
+    }
+    public function removeFavorite(ProfessionalInfo $pi): self
+    {
+        if ($this->favorites->contains($pi)) {
+            $this->favorites->removeElement($pi);
+            if (method_exists($pi, 'removeFavoritedBy')) {
+                $pi->removeFavoritedBy($this);
+            }
+        }
+        return $this;
+    }
+    public function isFavorite(ProfessionalInfo $pi): bool
+    {
+        return $this->favorites->contains($pi);
     }
 }
