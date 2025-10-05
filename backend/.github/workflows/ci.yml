@@ -5,6 +5,7 @@ on:
         branches: [ main, develop, CICD ]
     pull_request:
         branches: [ main ]
+    workflow_dispatch:  # ← Permet de déclencher manuellement
 
 jobs:
     tests:
