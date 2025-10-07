@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class ApiRegisterController extends AbstractController
 {
-    #[Route('/api/register', name: 'app_api_register')]
+    #[Route('/api/register', name: 'app_api_register', methods: ['POST'])]
     public function register(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em): Response
     {
         // We receipe the JSON send by the frontend

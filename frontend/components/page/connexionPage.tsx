@@ -1,0 +1,65 @@
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import { apiFetch } from "../service/api";
+import { styles } from "../style/connexion.styles";
+import { router } from "expo-router";
+
+export default function RegisterScreen() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [type, setType] = useState("user"); // par défaut simple user
+
+  const handleRegister = async () => {
+    try {
+      const data = await apiFetch("/register", {
+        method: "POST",
+        body: JSON.stringify({ email, password, type }),
+      });
+      Alert.alert("Succès", "Compte créé avec succès !");
+      router.push("/explore"); // on ira vers la page login après
+    } catch (error) {
+      if (error instanceof Error) {
+        Alert.alert("Erreur", error.message);
+      } else {
+        Alert.alert("Erreur", "Une erreur inconnue s'est produite.");
+      }
+    }
+  };
+
+  return (
+    <View>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        autoCapitalize="none"
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Mot de passe"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+      />
+
+      <View style={styles.typeContainer}>
+        <TouchableOpacity onPress={() => setType("user")}>
+          <Text style={[styles.typeButton, type === "user" && styles.selected]}>
+            Utilisateur
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => setType("pro")}>
+          <Text style={[styles.typeButton, type === "pro" && styles.selected]}>
+            Professionnel
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity style={styles.button} onPress={handleRegister}>
+        <Text style={styles.buttonText}>Sinscrire</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
