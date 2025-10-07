@@ -19,7 +19,7 @@ export default function HomeScreen() {
         <Text>Bienvenue !</Text>
 
         {/* Avec Link component */}
-        <Link href="/explore" asChild>
+        <Link href="/register" asChild>
           <TouchableOpacity>
             <Text>S&apos;inscrire</Text>
           </TouchableOpacity>

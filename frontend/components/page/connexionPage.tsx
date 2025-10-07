@@ -16,7 +16,7 @@ export default function RegisterScreen() {
         body: JSON.stringify({ email, password, type }),
       });
       Alert.alert("Succès", "Compte créé avec succès !");
-      router.push("/explore"); // on ira vers la page login après
+      router.push("/login"); // on ira vers la page login après
     } catch (error) {
       if (error instanceof Error) {
         Alert.alert("Erreur", error.message);
@@ -58,7 +58,7 @@ export default function RegisterScreen() {
       </View>
 
       <TouchableOpacity style={styles.button} onPress={handleRegister}>
-        <Text style={styles.buttonText}>Sinscrire</Text>
+        <Text style={styles.buttonText}>S&apos;inscrire</Text>
       </TouchableOpacity>
     </View>
   );

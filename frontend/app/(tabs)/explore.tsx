@@ -1,5 +1,7 @@
-import RegisterScreen from '@/components/page/connexionPage';
+import { Text } from "react-native";
 
-export default function Register() {
-  return <RegisterScreen />;
+export default function Explore() {
+  return(
+    <Text>On test des choses</Text>
+  )
 }
