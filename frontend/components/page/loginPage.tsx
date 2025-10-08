@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, Text, Alert, ActivityIndicator } from 'react-native';
+import { View, TextInput, TouchableOpacity, Text, Alert, ActivityIndicator, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { router } from 'expo-router';
 import { styles } from '../style/login.styles';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import colors from '@/constants/colors';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');
@@ -62,7 +64,7 @@ export default function LoginScreen() {
       await AsyncStorage.setItem('token', data.token);
 
       Alert.alert("Succès", "Connexion réussie !");
-      router.push('/explore');
+      router.push('/login');
       
     } catch (error) {
       console.error('Erreur:', error);
@@ -75,47 +77,59 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Connexion</Text>
-      
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-        keyboardType="email-address"
-        autoComplete="email"
-        editable={!loading}
-      />
-      
-      <TextInput
-        style={styles.input}
-        placeholder="Mot de passe"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-        autoComplete="password"
-        editable={!loading}
-      />
-      
-      {error ? <Text style={styles.error}>{error}</Text> : null}
-      
-      <TouchableOpacity 
-        style={[styles.button, loading && styles.buttonDisabled]} 
-        onPress={handleLogin}
-        disabled={loading}
-      >
-        {loading ? (
-          <ActivityIndicator color="#fff" />
-        ) : (
-          <Text style={styles.buttonText}>Se connecter</Text>
-        )}
-      </TouchableOpacity>
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: colors.backTheme }}
+      edges={["top", "left", "right"]}
+    >
+      <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Connexion</Text>
 
-      <TouchableOpacity onPress={() => router.push('/register')} disabled={loading}>
-        <Text style={styles.linkText}>Pas encore de compte ? S&apos;inscrire</Text>
-      </TouchableOpacity>
-    </View>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            value={email}
+            onChangeText={setEmail}
+            autoCapitalize="none"
+            keyboardType="email-address"
+            autoComplete="email"
+            editable={!loading}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Mot de passe"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+            autoComplete="password"
+            editable={!loading}
+          />
+
+          {error ? <Text style={styles.error}>{error}</Text> : null}
+
+          <TouchableOpacity
+            style={[styles.button, loading && styles.buttonDisabled]}
+            onPress={handleLogin}
+            disabled={loading}
+          >
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text style={styles.buttonText}>Se connecter</Text>
+            )}
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => router.push("/register")}
+            disabled={loading}
+          >
+            <Text style={styles.linkText}>
+              Pas encore de compte ? S&apos;inscrire
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }

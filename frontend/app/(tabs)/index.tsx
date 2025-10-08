@@ -1,49 +1,88 @@
+import { styles } from "@/components/style/general.styles";
+import BtnLink from "@/components/ui/btnLink";
+import TextContain from "@/components/ui/textContain";
+import colors from "@/constants/colors";
+import { Entypo, FontAwesome5 } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-
-import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { Link } from "expo-router";
+import { ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-      headerImage={
-        <Image
-          source={require("@/assets/images/partial-react-logo.png")}
-          style={styles.reactLogo}
-        />
-      }
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: colors.backTheme}}
+      edges={["top", "left", "right"]}
     >
-      <View>
-        <Text>Bienvenue !</Text>
-
-        {/* Avec Link component */}
-        <Link href="/register" asChild>
-          <TouchableOpacity>
-            <Text>S&apos;inscrire</Text>
-          </TouchableOpacity>
-        </Link>
-      </View>
-    </ParallaxScrollView>
+      <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }}>
+        <View style={styles.containerLogo}>
+          <Image
+            source={require("@/assets/images/icon.png")}
+            style={styles.logo}
+          />
+          <Text style={styles.textLogo}>Circuit Vert</Text>
+        </View>
+        <View style={styles.containerText}>
+          <TextContain
+            textStyle={styles.textContain}
+            text="Découvrez les fermes près de chez vous qui vendent en direct !"
+          />
+          <TextContain
+            textStyle={styles.textContain}
+            text="Envie de consommer local, de saison et en toute transparence ?"
+          />
+          <TextContain
+            textStyle={styles.textContain}
+            text="Notre application vous permet de trouver facilement des producteurs qui proposent leurs produits en vente directe : à la ferme, en box, sur les marchés ou via des points de retrait."
+          />
+          <TextContain
+            textStyle={styles.textContain}
+            text="Soutenez les producteurs, réduisez les intermédiaires, et mangez mieux ! En quelques clics, rapprochez-vous du bon, du vrai, du local."
+          />
+          <View style={styles.btnContainer}>
+            <BtnLink
+              lien={"/login"}
+              btnStyle={styles.btnStyle}
+              textStyle={styles.textBtn}
+              text="Comment ça marche?"
+            />
+            <BtnLink
+              lien={"/register"}
+              btnStyle={styles.btnStyle}
+              textStyle={styles.textBtn}
+              text="Qui suis-je?"
+            />
+            <BtnLink
+              lien={"/how"}
+              btnStyle={styles.btnStyle}
+              textStyle={styles.textBtn}
+              text="Toutes vos questions"
+            />
+            <BtnLink
+              lien={"/how"}
+              btnStyle={styles.btnStyle}
+              textStyle={styles.textBtn}
+              text="Contact"
+            />
+          </View>
+          <View style={styles.reseaux}>
+            <Link href={"https://www.facebook.com/?locale=fr_FR"}>
+              <FontAwesome5
+                name="facebook"
+                size={60}
+                color={colors.boldColor}
+              />
+            </Link>
+            <Link href={"https://www.linkedin.com/feed/"}>
+              <Entypo
+                name="linkedin-with-circle"
+                size={60}
+                color={colors.boldColor}
+              />
+            </Link>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
-  },
-});

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView } from "react-native";
 import { apiFetch } from "../service/api";
 import { styles } from "../style/connexion.styles";
 import { router } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import colors from "@/constants/colors";
 
 export default function RegisterScreen() {
   const [email, setEmail] = useState("");
@@ -27,39 +29,50 @@ export default function RegisterScreen() {
   };
 
   return (
-    <View>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        onChangeText={setEmail}
-        autoCapitalize="none"
-      />
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: colors.backTheme }}
+      edges={["top", "left", "right"]}
+    >
+      <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }}>
+        <View>
+          <TextInput
+            style={styles.input}
+            placeholder="Email"
+            value={email}
+            onChangeText={setEmail}
+            autoCapitalize="none"
+          />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Mot de passe"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
+          <TextInput
+            style={styles.input}
+            placeholder="Mot de passe"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+          />
 
-      <View style={styles.typeContainer}>
-        <TouchableOpacity onPress={() => setType("user")}>
-          <Text style={[styles.typeButton, type === "user" && styles.selected]}>
-            Utilisateur
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => setType("pro")}>
-          <Text style={[styles.typeButton, type === "pro" && styles.selected]}>
-            Professionnel
-          </Text>
-        </TouchableOpacity>
-      </View>
+          <View style={styles.typeContainer}>
+            <TouchableOpacity onPress={() => setType("user")}>
+              <Text
+                style={[styles.typeButton, type === "user" && styles.selected]}
+              >
+                Utilisateur
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setType("pro")}>
+              <Text
+                style={[styles.typeButton, type === "pro" && styles.selected]}
+              >
+                Professionnel
+              </Text>
+            </TouchableOpacity>
+          </View>
 
-      <TouchableOpacity style={styles.button} onPress={handleRegister}>
-        <Text style={styles.buttonText}>S&apos;inscrire</Text>
-      </TouchableOpacity>
-    </View>
+          <TouchableOpacity style={styles.button} onPress={handleRegister}>
+            <Text style={styles.buttonText}>S&apos;inscrire</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
