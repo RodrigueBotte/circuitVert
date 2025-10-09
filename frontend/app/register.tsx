@@ -1,4 +1,4 @@
-import RegisterScreen from '@/components/page/connexionPage';
+import RegisterScreen from '@/components/page/registerPage';
 
 export default function Register() {
   return <RegisterScreen />;

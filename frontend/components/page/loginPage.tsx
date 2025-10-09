@@ -14,6 +14,7 @@ import { router } from "expo-router";
 import { styles } from "../style/login.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "@/constants/colors";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -102,26 +103,31 @@ export default function LoginScreen() {
           />
           <Text style={styles.title}>Connexion</Text>
           <View style={styles.containerForm}>
-            <TextInput
-              style={styles.input}
-              placeholder="Email"
-              value={email}
-              onChangeText={setEmail}
-              autoCapitalize="none"
-              keyboardType="email-address"
-              autoComplete="email"
-              editable={!loading}
-            />
-
-            <TextInput
-              style={styles.input}
-              placeholder="Mot de passe"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-              autoComplete="password"
-              editable={!loading}
-            />
+            <View style={styles.containerInput}>
+              <Text>Email :</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Email"
+                value={email}
+                onChangeText={setEmail}
+                autoCapitalize="none"
+                keyboardType="email-address"
+                autoComplete="email"
+                editable={!loading}
+              />
+            </View>
+            <View style={styles.containerInput}>
+              <Text>Mot de passe :</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Mot de passe"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+                autoComplete="password"
+                editable={!loading}
+              />
+            </View>
 
             {error ? <Text style={styles.error}>{error}</Text> : null}
 
@@ -133,7 +139,7 @@ export default function LoginScreen() {
               {loading ? (
                 <ActivityIndicator color="#fff" />
               ) : (
-                <Text style={styles.buttonText}>Se connecter</Text>
+                <Text style={styles.btnTtext}>Se connecter</Text>
               )}
             </TouchableOpacity>
 
@@ -142,7 +148,8 @@ export default function LoginScreen() {
               disabled={loading}
             >
               <Text style={styles.linkText}>
-                Pas encore de compte ? S&apos;inscrire
+                Pas encore de compte ? S&apos;inscrire{" "}
+                <AntDesign name="arrow-right" size={15} color="black" />
               </Text>
             </TouchableOpacity>
           </View>

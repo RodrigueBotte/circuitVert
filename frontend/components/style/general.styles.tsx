@@ -1,9 +1,9 @@
 import colors from "@/constants/colors";
+import fonts from "@/constants/fonts";
 import { StyleSheet } from "react-native";
 
+
 export const styles = StyleSheet.create({
-  title: {},
-  textBase: {},
   logo: {
     width: 75,
     height: 75,
@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
   },
   textLogo: {
     fontSize: 35,
+    fontFamily: fonts.happyMonkey
   },
   containerText: {
     flex: 2,
@@ -26,14 +27,16 @@ export const styles = StyleSheet.create({
     justifyContent: "space-around",
     padding: 15,
     gap: 20,
-    height:200
+    height: 200,
   },
-  textContain: {},
+  textContain: {
+    fontSize: 15,
+    
+  },
   btnContainer: {
     height: 300,
     justifyContent: "space-around",
     alignItems: "center",
-
   },
   btnStyle: {
     borderColor: colors.lightColor,
@@ -45,16 +48,16 @@ export const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: 'center',
+    alignItems: "center",
     paddingHorizontal: 15,
-    paddingVertical: 5
+    paddingVertical: 5,
   },
   textBtn: {
-    fontFamily: require('@/assets/font/HappyMonkey-Regular.ttf'),
-    fontSize: 20
+    fontFamily: fonts.happyMonkey,
+    fontSize: 20,
   },
   reseaux: {
     flexDirection: "row",
-    justifyContent: "space-around"
-  }
+    justifyContent: "space-around",
+  },
 });

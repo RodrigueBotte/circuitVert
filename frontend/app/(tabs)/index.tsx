@@ -11,7 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function HomeScreen() {
   return (
     <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.backTheme}}
+      style={{ flex: 1, backgroundColor: colors.backTheme }}
       edges={["top", "left", "right"]}
     >
       <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }}>
@@ -20,7 +20,9 @@ export default function HomeScreen() {
             source={require("@/assets/images/icon.png")}
             style={styles.logo}
           />
-          <Text style={styles.textLogo}>Circuit Vert</Text>
+          <Text style={styles.textLogo}>
+            Circuit <Text style={{color: colors.boldColor}}>Vert</Text>
+          </Text>
         </View>
         <View style={styles.containerText}>
           <TextContain
