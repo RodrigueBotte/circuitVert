@@ -49,18 +49,17 @@ export default function RegisterScreen() {
           />
           <Text style={styles.title}>Inscription</Text>
           <View style={styles.containerForm}>
-            <View>
+            <View style={styles.containerInput}>
               <Text>Email :</Text>
               <TextInput
                 style={styles.input}
                 placeholder="Email"
-                placeholderTextColor="black"
                 value={email}
                 onChangeText={setEmail}
                 autoCapitalize="none"
               />
             </View>
-            <View>
+            <View style={styles.containerInput}>
               <Text>Mot de passe :</Text>
               <TextInput
                 style={styles.input}

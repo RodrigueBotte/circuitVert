@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flex: 2,
     justifyContent: "center",
     alignItems: "center",
-    gap: 15
+    gap: 15,
   },
   logo: {
     width: 139,
@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
     height: "auto",
     borderWidth: 2,
     borderColor: colors.lightColor,
+    backgroundColor: "#fff",
     paddingVertical: 50,
     paddingHorizontal: 15,
     borderRadius: 15,
@@ -29,20 +30,21 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
     marginBottom: 20,
-    fontFamily: fonts.happyMonkey
+    fontFamily: fonts.happyMonkey,
+  },
+  containerInput: {
+    gap: 5,
   },
   input: {
     width: 200,
-    height:40,
+    height: 40,
     borderWidth: 2,
     borderColor: colors.boldColor,
     padding: 10,
     borderRadius: 15,
-    marginBottom: 10,
-    color: "black",
   },
   button: {
-    backgroundColor: colors.boldColor,
+    backgroundColor: colors.lightColor,
     borderRadius: 15,
     width: 150,
     height: 35,
@@ -52,7 +54,7 @@ export const styles = StyleSheet.create({
   buttonText: {
     textAlign: "center",
     fontFamily: fonts.happyMonkey,
-    fontSize: 18
+    fontSize: 18,
   },
   typeContainer: {
     flexDirection: "row",
@@ -68,6 +70,5 @@ export const styles = StyleSheet.create({
   },
   selected: {
     backgroundColor: colors.lightColor,
-    
   },
 });
