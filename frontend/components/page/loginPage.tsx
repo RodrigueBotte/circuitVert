@@ -98,7 +98,7 @@ export default function LoginScreen() {
       <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }}>
         <View style={styles.container}>
           <Image
-            source={require("@/assets/images/icon.png")}
+            source={require("@/assets/imageCV/logo.png")}
             style={styles.logo}
           />
           <Text style={styles.title}>Connexion</Text>

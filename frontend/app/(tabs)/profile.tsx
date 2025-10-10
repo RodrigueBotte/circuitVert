@@ -1,7 +1,7 @@
-import { Text } from "react-native";
+import ProfileScreen from "@/components/page/profilePage";
 
 export default function Explore() {
   return(
-    <Text>On test des choses</Text>
+    <ProfileScreen />
   )
 }

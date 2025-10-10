@@ -17,7 +17,7 @@ export default function HomeScreen() {
       <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }}>
         <View style={styles.containerLogo}>
           <Image
-            source={require("@/assets/images/icon.png")}
+            source={require("@/assets/imageCV/logo.png")}
             style={styles.logo}
           />
           <Text style={styles.textLogo}>
