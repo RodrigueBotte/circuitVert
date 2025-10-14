@@ -76,7 +76,7 @@ export default function LoginScreen() {
       await AsyncStorage.setItem("token", data.token);
 
       Alert.alert("Succès", "Connexion réussie !");
-      router.push("/login");
+      router.push("/profile");
     } catch (error) {
       console.error("Erreur:", error);
       const message =
