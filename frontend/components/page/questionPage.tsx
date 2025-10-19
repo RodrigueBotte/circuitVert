@@ -2,6 +2,8 @@ import colors from "@/constants/colors";
 import { FlatList, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "../style/question.styles";
+import { Link } from "expo-router";
+import { AntDesign } from "@expo/vector-icons";
 
 export default function QuestionPage() {
   const data = [
@@ -73,6 +75,7 @@ export default function QuestionPage() {
             </View>
           )}
         />
+        <Link href={'/'} style={styles.mentions}>Mentions légales <AntDesign name="arrow-right" size={20} color="black" /></Link>
       </ScrollView>
     </SafeAreaView>
   );

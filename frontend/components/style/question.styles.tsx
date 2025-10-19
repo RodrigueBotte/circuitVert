@@ -22,5 +22,16 @@ export const styles = StyleSheet.create({
   },
   response:{
     fontSize: 14,
+  },
+  mentions:{
+    fontSize: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: 10,
+    textDecorationLine: 'underline',
+    textDecorationColor: colors.lightColor,
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowColor: colors.lightColor,
   }
 });

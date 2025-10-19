@@ -104,7 +104,7 @@ export default function ProfileScreen() {
 
           {user.sirret && (
             <View style={styles.infoRow}>
-              <Text style={styles.infoLabel}>SIRRET :</Text>
+              <Text style={styles.infoLabel}>SIRET :</Text>
               <Text style={styles.infoValue}>{user.sirret}</Text>
             </View>
           )}

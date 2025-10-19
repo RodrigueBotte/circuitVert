@@ -41,7 +41,7 @@ const showAlert = (title: string, message: string) => {
     try {
       const body: any = { email, password, type };
 
-      // Ajoute nom et sirret seulement si pro
+      // Ajoute nom et siret seulement si pro
       if (type === "pro") {
         body.nom = nom;
         body.sirret = sirret;
@@ -141,10 +141,10 @@ const showAlert = (title: string, message: string) => {
                   />
                 </View>
                 <View style={styles.containerInput}>
-                  <Text>Numéro SIRRET :</Text>
+                  <Text>Numéro SIRET :</Text>
                   <TextInput
                     style={styles.input}
-                    placeholder="Numéro SIRRET"
+                    placeholder="Numéro SIRET"
                     value={sirret}
                     onChangeText={setSirret}
                   />

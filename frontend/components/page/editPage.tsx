@@ -213,7 +213,7 @@ export default function EditProfileScreen() {
               </View>
 
               <View style={styles.inputGroup}>
-                <Text style={styles.label}>Numéro SIRRET</Text>
+                <Text style={styles.label}>Numéro SIRET</Text>
                 <TextInput
                   style={styles.input}
                   placeholder={sirret}
