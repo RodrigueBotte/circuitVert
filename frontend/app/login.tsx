@@ -1,5 +1,5 @@
 import LoginScreen from "@/components/page/loginPage";
 
-export default function Register() {
+export default function Login() {
   return <LoginScreen />;
 }

@@ -40,11 +40,11 @@
           }
         }
       ],
-      "expo-font",
-      "react-native-maps",
-        {
-          "useGoogleMaps": false
-        }
+      "expo-font"
+      // "react-native-maps",
+      //   {
+      //     "useGoogleMaps": false
+      //   }
     ],
     "experiments": {
       "typedRoutes": true,

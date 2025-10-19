@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  View, 
-  Text, 
-  TextInput, 
-  TouchableOpacity, 
-  ScrollView, 
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  ScrollView,
   ActivityIndicator,
   Alert,
-  Platform 
-} from 'react-native';
-import { router } from 'expo-router';
-import { apiFetch } from '@/components/service/api';
-import { styles } from '@/components/style/edit-profile.styles';
+  Platform,
+} from "react-native";
+import { router } from "expo-router";
+import { apiFetch } from "@/components/service/api";
+import { styles } from "@/components/style/edit-profile.styles";
 
 interface UserProfile {
   id: number;
@@ -24,9 +24,11 @@ interface UserProfile {
 
 export default function EditProfileScreen() {
   const [user, setUser] = useState<UserProfile | null>(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [nom, setNom] = useState("");
+  const [sirret, setSirret] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -37,15 +39,19 @@ export default function EditProfileScreen() {
   const loadProfile = async () => {
     try {
       setLoading(true);
-      const data = await apiFetch('/user/me', { method: 'GET' });
+      const data = await apiFetch("/user/me", { method: "GET" });
       setUser(data);
       setEmail(data.email);
+      if (data.type === "pro") {
+        setNom(data.nom || "");
+        setSirret(data.sirret || "");
+      }
     } catch (error) {
-      console.error('❌ Erreur chargement profil:', error);
-      if (Platform.OS === 'web') {
-        window.alert('Impossible de charger le profil');
+      console.error("❌ Erreur chargement profil:", error);
+      if (Platform.OS === "web") {
+        window.alert("Impossible de charger le profil");
       } else {
-        Alert.alert('Erreur', 'Impossible de charger le profil');
+        Alert.alert("Erreur", "Impossible de charger le profil");
       }
       router.back();
     } finally {
@@ -56,66 +62,75 @@ export default function EditProfileScreen() {
   const handleSave = async () => {
     // Validation
     if (!email.trim()) {
-      if (Platform.OS === 'web') {
-        window.alert('L\'email est requis');
+      if (Platform.OS === "web") {
+        window.alert("L'email est requis");
       } else {
-        Alert.alert('Erreur', 'L\'email est requis');
+        Alert.alert("Erreur", "L'email est requis");
       }
       return;
     }
 
     if (password && password !== confirmPassword) {
-      if (Platform.OS === 'web') {
-        window.alert('Les mots de passe ne correspondent pas');
+      if (Platform.OS === "web") {
+        window.alert("Les mots de passe ne correspondent pas");
       } else {
-        Alert.alert('Erreur', 'Les mots de passe ne correspondent pas');
+        Alert.alert("Erreur", "Les mots de passe ne correspondent pas");
       }
       return;
     }
 
     if (password && password.length < 6) {
-      if (Platform.OS === 'web') {
-        window.alert('Le mot de passe doit contenir au moins 6 caractères');
+      if (Platform.OS === "web") {
+        window.alert("Le mot de passe doit contenir au moins 6 caractères");
       } else {
-        Alert.alert('Erreur', 'Le mot de passe doit contenir au moins 6 caractères');
+        Alert.alert(
+          "Erreur",
+          "Le mot de passe doit contenir au moins 6 caractères"
+        );
       }
       return;
     }
 
     try {
       setSaving(true);
-      
+
       const updateData: any = { email: email.trim() };
-      
+
       // Ajoute le mot de passe seulement s'il a été rempli
       if (password) {
         updateData.password = password;
       }
 
-      console.log('📤 Mise à jour du profil:', { email, hasPassword: !!password });
+      if (user?.type === "pro") {
+        updateData.nom = nom.trim();
+        updateData.sirret = sirret.trim();
+      }
 
-      await apiFetch('/user/me', {
-        method: 'PUT',
+      await apiFetch("/user/me", {
+        method: "PUT",
         body: JSON.stringify(updateData),
       });
 
-      console.log('✅ Profil mis à jour');
+      console.log("✅ Profil mis à jour");
 
-      if (Platform.OS === 'web') {
-        window.alert('Profil mis à jour avec succès !');
+      if (Platform.OS === "web") {
+        window.alert("Profil mis à jour avec succès !");
       } else {
-        Alert.alert('Succès', 'Profil mis à jour avec succès !');
+        Alert.alert("Succès", "Profil mis à jour avec succès !");
       }
 
       router.back();
     } catch (error) {
-      console.error('❌ Erreur mise à jour:', error);
-      const message = error instanceof Error ? error.message : 'Erreur lors de la mise à jour';
-      
-      if (Platform.OS === 'web') {
+      console.error("❌ Erreur mise à jour:", error);
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Erreur lors de la mise à jour";
+
+      if (Platform.OS === "web") {
         window.alert(message);
       } else {
-        Alert.alert('Erreur', message);
+        Alert.alert("Erreur", message);
       }
     } finally {
       setSaving(false);
@@ -156,7 +171,8 @@ export default function EditProfileScreen() {
 
           <View style={styles.inputGroup}>
             <Text style={styles.label}>
-              Nouveau mot de passe <Text style={styles.optional}>(optionnel)</Text>
+              Nouveau mot de passe{" "}
+              <Text style={styles.optional}>(optionnel)</Text>
             </Text>
             <TextInput
               style={styles.input}
@@ -184,12 +200,29 @@ export default function EditProfileScreen() {
             </View>
           )}
 
-          {user?.type === 'pro' && (
-            <View style={styles.infoBox}>
-              <Text style={styles.infoText}>
-                ℹ️ Les informations professionnelles (nom, SIRRET) ne peuvent pas être modifiées ici.
-              </Text>
-            </View>
+          {user?.type === "pro" && (
+            <>
+              <View style={styles.inputGroup}>
+                <Text style={styles.label}>Nom de l entreprise</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder={nom}
+                  onChangeText={setNom}
+                  editable={!saving}
+                />
+              </View>
+
+              <View style={styles.inputGroup}>
+                <Text style={styles.label}>Numéro SIRRET</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder={sirret}
+                  onChangeText={setSirret}
+                  keyboardType="numeric"
+                  editable={!saving}
+                />
+              </View>
+            </>
           )}
         </View>
 
@@ -202,7 +235,9 @@ export default function EditProfileScreen() {
             {saving ? (
               <ActivityIndicator color="#fff" />
             ) : (
-              <Text style={styles.saveButtonText}>Enregistrer les modifications</Text>
+              <Text style={styles.saveButtonText}>
+                Enregistrer les modifications
+              </Text>
             )}
           </TouchableOpacity>
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -8,7 +8,7 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { apiFetch } from "@/components/service/api";
 import { styles } from "@/components/style/profile.styles";
@@ -27,9 +27,11 @@ export default function ProfileScreen() {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadProfile();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      loadProfile();
+    }, [])
+  );
 
   const loadProfile = async () => {
     try {
@@ -95,20 +97,20 @@ export default function ProfileScreen() {
         <View style={styles.section}>
           {user.nom && (
             <View style={styles.infoRow}>
-              <Text style={styles.infoLabel}>Nom de l&apos;entreprise</Text>
+              <Text style={styles.infoLabel}>Nom de l&apos;entreprise :</Text>
               <Text style={styles.infoValue}>{user.nom}</Text>
             </View>
           )}
 
           {user.sirret && (
             <View style={styles.infoRow}>
-              <Text style={styles.infoLabel}>SIRRET</Text>
+              <Text style={styles.infoLabel}>SIRRET :</Text>
               <Text style={styles.infoValue}>{user.sirret}</Text>
             </View>
           )}
 
           <View style={styles.infoRow}>
-            <Text style={styles.infoLabel}>Email</Text>
+            <Text style={styles.infoLabel}>Email :</Text>
             <Text style={styles.infoValue}>{user.email}</Text>
           </View>
 

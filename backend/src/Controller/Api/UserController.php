@@ -21,12 +21,20 @@ final class UserController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
 
-        return $this->json([
+        $response = [
             'id' => $user->getId(),
             'email' => $user->getEmail(),
             'type' => $user->getType(),
             'roles' => $user->getRoles(),
-        ]);
+        ];
+
+        // Ajouter nom et sirret si c'est un professionnel
+        if ($user->getType() === 'pro') {
+            $response['nom'] = $user->getNom();
+            $response['sirret'] = $user->getSirret();
+        }
+
+        return $this->json($response);
     }
 
     #[Route('/me', name: 'user_update_me', methods: ['PUT'])]
@@ -49,6 +57,15 @@ final class UserController extends AbstractController
         if (isset($data['password'])) {
             $hashedPassword = $passwordHasher->hashPassword($user,  $data['password']);
             $user->setPassword($hashedPassword);
+        }
+
+        if ($user->getType() === 'pro') {
+            if (isset($data['nom'])) {
+                $user->setNom($data['nom']);
+            }
+            if (isset($data['sirret'])) {
+                $user->setSirret($data['sirret']);
+            }
         }
 
         $em->flush();
