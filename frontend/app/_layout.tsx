@@ -57,6 +57,7 @@ export default function RootLayout() {
           }}
         />
         <Stack.Screen name="login" options={{ title: "Connexion" }} />
+        <Stack.Screen name="question" options={{ title: "Toutes vos questions" }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

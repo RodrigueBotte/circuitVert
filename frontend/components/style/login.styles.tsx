@@ -13,15 +13,22 @@ export const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 20,
     textAlign: "center",
-    fontFamily: fonts.happyMonkey
+    fontFamily: fonts.happyMonkey,
+  },
+  labelText: {
+    fontSize: 14,
+    textDecorationLine: "underline",
+    textDecorationColor: colors.lightColor,
+    textShadowOffset: { width: 0, height: 1 },
+    textShadowColor: colors.lightColor,
   },
   input: {
     borderWidth: 2,
     borderRadius: 15,
     borderColor: colors.boldColor,
-    width: 195,
-    height: 40,
-    padding: 10
+    paddingHorizontal: 15,
+    paddingVertical: 12,
+    padding: 10,
   },
   error: {
     color: "red",
@@ -30,15 +37,16 @@ export const styles = StyleSheet.create({
   },
   button: {
     width: 150,
-    height: 35,
     backgroundColor: colors.lightColor,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
+    paddingVertical: 16,
   },
-  btnTtext: {
-    color: 'black',
-    fontFamily: fonts.happyMonkey
+  btnText: {
+    color: "black",
+    fontFamily: fonts.happyMonkey,
+    fontWeight: "500",
   },
   buttonDisabled: {
     backgroundColor: colors.boldColor,

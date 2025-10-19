@@ -104,7 +104,7 @@ export default function LoginScreen() {
           <Text style={styles.title}>Connexion</Text>
           <View style={styles.containerForm}>
             <View style={styles.containerInput}>
-              <Text>Email :</Text>
+              <Text style={styles.labelText}>Email :</Text>
               <TextInput
                 style={styles.input}
                 placeholder="Email"
@@ -117,7 +117,7 @@ export default function LoginScreen() {
               />
             </View>
             <View style={styles.containerInput}>
-              <Text>Mot de passe :</Text>
+              <Text style={styles.labelText}>Mot de passe :</Text>
               <TextInput
                 style={styles.input}
                 placeholder="Mot de passe"
@@ -139,7 +139,7 @@ export default function LoginScreen() {
               {loading ? (
                 <ActivityIndicator color="#fff" />
               ) : (
-                <Text style={styles.btnTtext}>Se connecter</Text>
+                <Text style={styles.btnText}>Se connecter</Text>
               )}
             </TouchableOpacity>
 

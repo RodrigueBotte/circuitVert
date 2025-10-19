@@ -55,7 +55,7 @@ export default function HomeScreen() {
               text="Qui suis-je?"
             />
             <BtnLink
-              lien={"/how"}
+              lien={"/question"}
               btnStyle={styles.btnStyle}
               textStyle={styles.textBtn}
               text="Toutes vos questions"

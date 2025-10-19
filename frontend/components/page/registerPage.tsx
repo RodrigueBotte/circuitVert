@@ -7,6 +7,7 @@ import {
   Alert,
   ScrollView,
   Image,
+  Platform,
 } from "react-native";
 import { apiFetch } from "../service/api";
 import { styles } from "../style/register.styles";
@@ -17,21 +18,49 @@ import colors from "@/constants/colors";
 export default function RegisterScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [type, setType] = useState("user"); // par défaut simple user
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [type, setType] = useState("user");
+  const [nom, setNom] = useState("");
+  const [sirret, setSirret] = useState("");
+
+  // Ajoutez cette fonction en haut du composant
+const showAlert = (title: string, message: string) => {
+  if (Platform.OS === 'web') {
+    window.alert(`${title}\n\n${message}`);
+  } else {
+    Alert.alert(title, message);
+  }
+};
 
   const handleRegister = async () => {
+    if (password !== confirmPassword) {
+      showAlert("Erreur", "Les mots de passe ne correspondent pas");
+      return;
+    }
+
     try {
+      const body: any = { email, password, type };
+
+      // Ajoute nom et sirret seulement si pro
+      if (type === "pro") {
+        body.nom = nom;
+        body.sirret = sirret;
+      }
+
       const data = await apiFetch("/register", {
         method: "POST",
-        body: JSON.stringify({ email, password, type }),
+        body: JSON.stringify(body),
       });
-      Alert.alert("Succès", "Compte créé avec succès !");
+
+      showAlert("Succès", "Compte créé avec succès !");
       router.push("/login"); // on ira vers la page login après
+
     } catch (error) {
+
       if (error instanceof Error) {
-        Alert.alert("Erreur", error.message);
+        showAlert("Erreur", error.message);
       } else {
-        Alert.alert("Erreur", "Une erreur inconnue s'est produite.");
+        showAlert("Erreur", "Une erreur inconnue s'est produite.");
       }
     }
   };
@@ -69,6 +98,16 @@ export default function RegisterScreen() {
                 secureTextEntry
               />
             </View>
+            <View style={styles.containerInput}>
+              <Text>Confirmer le mot de passe :</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Confirmer le mot de passe"
+                value={confirmPassword}
+                onChangeText={setConfirmPassword}
+                secureTextEntry
+              />
+            </View>
             <View style={styles.typeContainer}>
               <TouchableOpacity onPress={() => setType("user")}>
                 <Text
@@ -88,6 +127,30 @@ export default function RegisterScreen() {
                 </Text>
               </TouchableOpacity>
             </View>
+
+            {/* Champs supplémentaires pour les pros */}
+            {type === "pro" && (
+              <>
+                <View style={styles.containerInput}>
+                  <Text>Nom de l&apos;entreprise :</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Nom de l'entreprise"
+                    value={nom}
+                    onChangeText={setNom}
+                  />
+                </View>
+                <View style={styles.containerInput}>
+                  <Text>Numéro SIRRET :</Text>
+                  <TextInput
+                    style={styles.input}
+                    placeholder="Numéro SIRRET"
+                    value={sirret}
+                    onChangeText={setSirret}
+                  />
+                </View>
+              </>
+            )}
 
             <TouchableOpacity style={styles.button} onPress={handleRegister}>
               <Text style={styles.buttonText}>S&apos;inscrire</Text>
