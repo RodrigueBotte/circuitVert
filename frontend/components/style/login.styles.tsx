@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 12,
     padding: 10,
+    width: 200
   },
   error: {
     color: "red",

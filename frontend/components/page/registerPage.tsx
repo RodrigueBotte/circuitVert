@@ -66,11 +66,7 @@ const showAlert = (title: string, message: string) => {
   };
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.backTheme }}
-      edges={["top", "left", "right"]}
-    >
-      <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }}>
+      <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }} contentContainerStyle={{ paddingVertical: 30 }}>
         <View style={styles.container}>
           <Image
             source={require("@/assets/imageCV/logo.png")}
@@ -158,6 +154,5 @@ const showAlert = (title: string, message: string) => {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
   );
 }

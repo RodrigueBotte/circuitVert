@@ -57,26 +57,24 @@ export default function QuestionPage() {
     },
   ];
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.backTheme }}
-      edges={["top", "left", "right"]}
-    >
-      <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }}>
-        <FlatList
-          data={data}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={({ item }) => (
-            <View style={styles.containerElement}>
-              <View style={styles.containerTitle}>
-                <Text style={styles.number}>{item.id}. </Text>
-                <Text style={styles.title}>{item.question}</Text>
-              </View>
-              <Text style={styles.response}>{item.reponse}</Text>
-            </View>
-          )}
-        />
-        <Link href={'/'} style={styles.mentions}>Mentions légales <AntDesign name="arrow-right" size={20} color="black" /></Link>
-      </ScrollView>
-    </SafeAreaView>
-  );
+  <FlatList
+    style={{ flex: 1, backgroundColor: colors.backTheme }}
+    data={data}
+    keyExtractor={(item) => item.id.toString()}
+    renderItem={({ item }) => (
+      <View style={styles.containerElement}>
+        <View style={styles.containerTitle}>
+          <Text style={styles.number}>{item.id}. </Text>
+          <Text style={styles.title}>{item.question}</Text>
+        </View>
+        <Text style={styles.response}>{item.reponse}</Text>
+      </View>
+    )}
+    ListFooterComponent={() => (
+      <Link href={'/'} style={styles.mentions}>
+        Mentions légales <AntDesign name="arrow-right" size={20} color="black" />
+      </Link>
+    )}
+  />
+);
 }

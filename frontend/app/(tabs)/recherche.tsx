@@ -1,7 +1,7 @@
-import MapScreen from "@/components/page/searchPage";
+import { Text } from "react-native";
 
 export default function Recherche() {
   return(
-    <MapScreen/>
+    <Text>On test les maps</Text>
   )
 }

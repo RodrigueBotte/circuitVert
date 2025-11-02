@@ -42,7 +42,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $nom = null;
 
     #[ORM\Column(nullable: true)]
-    private ?string $sirret = null;
+    private ?string $siret = null;
 
     #[ORM\Column]
     private bool $isVerified = false;
@@ -145,12 +145,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getSirret(): ?string
     {
-        return $this->sirret;
+        return $this->siret;
     }
 
     public function setSirret(?string $sirret): self
     {
-        $this->sirret = $sirret;
+        $this->siret = $sirret;
         return $this;
     }
 

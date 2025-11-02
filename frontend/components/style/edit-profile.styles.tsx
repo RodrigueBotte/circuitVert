@@ -19,10 +19,10 @@ export const styles = StyleSheet.create({
     color: "#666",
   },
   content: {
-    paddingVertical: 20,
+    paddingVertical: 30,
     justifyContent: "center",
     alignItems: "center",
-    gap: 10
+    gap: 20
   },
   section: {
     width: "85%",
@@ -32,7 +32,8 @@ export const styles = StyleSheet.create({
     borderColor: colors.lightColor,
     backgroundColor: "#fff",
     borderWidth: 2,
-    paddingVertical: 35,
+    paddingVertical: 30
+    ,
     borderRadius: 15,
     gap: 20,
   },
@@ -40,11 +41,10 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     color: "#333",
-    marginBottom: 20,
+    marginBottom: 10,
     fontFamily: fonts.happyMonkey
   },
   inputGroup: {
-    marginBottom: 20,
     width: '80%'
   },
   label: {

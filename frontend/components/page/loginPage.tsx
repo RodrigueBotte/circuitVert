@@ -15,6 +15,7 @@ import { styles } from "../style/login.styles";
 import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "@/constants/colors";
 import { AntDesign } from "@expo/vector-icons";
+import { apiFetch } from "@/components/service/api"; // ✅ Importer votre service
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -24,55 +25,32 @@ export default function LoginScreen() {
 
   const handleLogin = async () => {
     setError("");
-    // on gere l'attente du chargement en retirant le bouton pour éviter le double clique
     setLoading(true);
 
     if (!email || !password) {
-      // vérification de la complétion des champs
       Alert.alert("Erreur", "Veuillez remplir tous les champs");
-      // on remet le bouton
       setLoading(false);
       return;
     }
 
     try {
       const requestBody = {
-        // trim pour éviter les espaces inutiles
         email: email.trim(),
         password: password,
       };
 
-      const response = await fetch("http://localhost:8000/api/login_check", {
+      // ✅ CORRECT - Utiliser apiFetch
+      const data = await apiFetch("/login_check", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
         body: JSON.stringify(requestBody),
       });
-
-      const responseText = await response.text();
-
-      let data;
-      try {
-        data = JSON.parse(responseText);
-      } catch (e) {
-        console.error("Erreur parsing JSON:", e);
-        throw new Error("Réponse serveur invalide");
-      }
-
-      if (!response.ok) {
-        console.error("Réponse not OK");
-        throw new Error(
-          data.message || data.error || `Erreur ${response.status}`
-        );
-      }
 
       if (!data.token) {
         console.error("Pas de token dans la réponse");
         throw new Error("Aucun token reçu");
       }
 
+      // Sauvegarder le token
       await AsyncStorage.setItem("token", data.token);
 
       Alert.alert("Succès", "Connexion réussie !");

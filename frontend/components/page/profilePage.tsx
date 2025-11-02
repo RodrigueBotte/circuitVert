@@ -13,6 +13,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { apiFetch } from "@/components/service/api";
 import { styles } from "@/components/style/profile.styles";
 import colors from "@/constants/colors";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 interface UserProfile {
   id: number;
@@ -86,6 +87,10 @@ export default function ProfileScreen() {
   }
 
   return (
+    <SafeAreaView
+          style={{ flex: 1, backgroundColor: colors.backTheme }}
+          edges={["top", "left", "right"]}
+        >
     <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }}>
       <View style={styles.container}>
         <Image
@@ -132,5 +137,6 @@ export default function ProfileScreen() {
         </View>
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 }
