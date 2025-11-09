@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Image,
+  Platform,
 } from "react-native";
 import { router, useFocusEffect } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -27,6 +28,14 @@ interface UserProfile {
 export default function ProfileScreen() {
   const [user, setUser] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
+  
+  const showAlert = (title: string, message: string) => {
+      if (Platform.OS === 'web') {
+        window.alert(`${title}\n\n${message}`);
+      } else {
+        Alert.alert(title, message);
+      }
+    };
 
   useFocusEffect(
     useCallback(() => {
@@ -44,7 +53,7 @@ export default function ProfileScreen() {
       router.push("/profile");
     } catch (error) {
       console.error("Erreur chargement profil:", error);
-      Alert.alert("Erreur", "Impossible de charger le profil");
+      showAlert("Erreur", "Impossible de charger le profil");
       // Si le token est invalide, rediriger vers login
       router.push("/login");
     } finally {

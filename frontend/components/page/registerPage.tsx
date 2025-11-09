@@ -12,7 +12,6 @@ import {
 import { apiFetch } from "../service/api";
 import { styles } from "../style/register.styles";
 import { router } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "@/constants/colors";
 
 export default function RegisterScreen() {
@@ -23,7 +22,6 @@ export default function RegisterScreen() {
   const [nom, setNom] = useState("");
   const [sirret, setSirret] = useState("");
 
-  // Ajoutez cette fonction en haut du composant
 const showAlert = (title: string, message: string) => {
   if (Platform.OS === 'web') {
     window.alert(`${title}\n\n${message}`);
@@ -66,7 +64,10 @@ const showAlert = (title: string, message: string) => {
   };
 
   return (
-      <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }} contentContainerStyle={{ paddingVertical: 30 }}>
+      <ScrollView 
+        style={{ flex: 1, backgroundColor: colors.backTheme }} 
+        contentContainerStyle={{ paddingVertical: 30 }}
+      >
         <View style={styles.container}>
           <Image
             source={require("@/assets/imageCV/logo.png")}
@@ -123,8 +124,6 @@ const showAlert = (title: string, message: string) => {
                 </Text>
               </TouchableOpacity>
             </View>
-
-            {/* Champs supplémentaires pour les pros */}
             {type === "pro" && (
               <>
                 <View style={styles.containerInput}>
@@ -147,7 +146,6 @@ const showAlert = (title: string, message: string) => {
                 </View>
               </>
             )}
-
             <TouchableOpacity style={styles.button} onPress={handleRegister}>
               <Text style={styles.buttonText}>S&apos;inscrire</Text>
             </TouchableOpacity>

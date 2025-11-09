@@ -35,7 +35,7 @@ final class ProfessionalInfoController extends AbstractController
         $user = $this->getUser();
 
         if ($user->getProfessionalInfo()) {
-            return $this->json(['error' => 'Vous avez déjà une ProfessionalInfo'], 400);
+            return $this->json(['error' => 'Vous avez déjà des informations professionnelles'], 400);
         }
 
         $data = json_decode($rq->getContent(), true);

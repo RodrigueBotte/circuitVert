@@ -114,7 +114,7 @@ class ProfessionalInfo
     public function addFavoritedBy(User $user): self
     {
         if (!$this->favoritedBy->contains($user)) {
-            $this->favoritedBy->add($user); // (optionnel) si tu veux synchroniser l'autre côté, User::addFavorite s'en chargera si présent 
+            $this->favoritedBy->add($user); 
         }
         return $this;
     }

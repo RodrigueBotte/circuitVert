@@ -62,6 +62,7 @@ const getApiUrl = () => {
         const localIP = getLocalIP();
         const isPhysicalDevice = !!Constants.expoConfig?.hostUri;
         
+        // debug en affichant la detection d'environnement
         console.log('🔍 Détection environnement:');
         console.log('  - IP détectée:', localIP);
         console.log('  - Expo hostUri:', Constants.expoConfig?.hostUri);

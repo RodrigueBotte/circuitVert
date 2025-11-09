@@ -8,14 +8,14 @@ import {
   ActivityIndicator,
   ScrollView,
   Image,
+  Platform,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { styles } from "../style/login.styles";
-import { SafeAreaView } from "react-native-safe-area-context";
 import colors from "@/constants/colors";
 import { AntDesign } from "@expo/vector-icons";
-import { apiFetch } from "@/components/service/api"; // ✅ Importer votre service
+import { apiFetch } from "@/components/service/api"; 
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -23,12 +23,20 @@ export default function LoginScreen() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const showAlert = (title: string, message: string) => {
+    if (Platform.OS === 'web') {
+      window.alert(`${title}\n\n${message}`);
+    } else {
+      Alert.alert(title, message);
+    }
+  };
+
   const handleLogin = async () => {
     setError("");
     setLoading(true);
 
     if (!email || !password) {
-      Alert.alert("Erreur", "Veuillez remplir tous les champs");
+      showAlert("Erreur", "Veuillez remplir tous les champs");
       setLoading(false);
       return;
     }
@@ -53,7 +61,7 @@ export default function LoginScreen() {
       // Sauvegarder le token
       await AsyncStorage.setItem("token", data.token);
 
-      Alert.alert("Succès", "Connexion réussie !");
+      showAlert("Succès", "Connexion réussie !");
       router.push("/profile");
     } catch (error) {
       console.error("Erreur:", error);
@@ -61,7 +69,7 @@ export default function LoginScreen() {
         error instanceof Error
           ? error.message
           : "Une erreur inconnue s'est produite.";
-      Alert.alert("Erreur", message);
+      showAlert("Erreur", message);
       setError(message);
     } finally {
       setLoading(false);
@@ -69,11 +77,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.backTheme }}
-      edges={["top", "left", "right"]}
-    >
-      <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }}>
+      <ScrollView style={{ flex: 1, backgroundColor: colors.backTheme }} contentContainerStyle={{ paddingVertical: 30 }}>
         <View style={styles.container}>
           <Image
             source={require("@/assets/imageCV/logo.png")}
@@ -133,6 +137,5 @@ export default function LoginScreen() {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
   );
 }

@@ -1,6 +1,5 @@
 import { Feather } from "@expo/vector-icons";
-import { useFonts } from "expo-font";
-import { Href, Link, router } from "expo-router";
+import { router } from "expo-router";
 import { StyleProp, Text, TextStyle, TouchableOpacity, ViewStyle } from "react-native";
 
 interface btnLinksProps{
@@ -11,9 +10,6 @@ interface btnLinksProps{
 }
 
 export default function BtnLink({ lien, btnStyle, textStyle, text }: btnLinksProps) {
-  const [fontsLoaded] = useFonts({
-    'monkey': require('@/assets/font/HappyMonkey-Regular.ttf')
-  })
   return (
 
       <TouchableOpacity style={btnStyle} onPress={()=> router.navigate(lien)}>
