@@ -1,5 +1,5 @@
 @startuml diagramme sequence connexion
-
+title Diagramme de sequence - Connexion utilisateur
 actor User as U
 participant Application as App
 participant Serveur as S

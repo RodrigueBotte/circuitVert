@@ -1,4 +1,5 @@
 @startuml Diagramme Activités Connexion
+title Connexion
 
 |Utilisateur|
 start 

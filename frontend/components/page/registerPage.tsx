@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Alert,
-  ScrollView,
-  Image,
-  Platform,
-} from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView, Image, Platform,} from "react-native";
 import { apiFetch } from "../service/api";
 import { styles } from "../style/register.styles";
 import { router } from "expo-router";

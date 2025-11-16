@@ -1,15 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  TextInput,
-  TouchableOpacity,
-  Text,
-  Alert,
-  ActivityIndicator,
-  ScrollView,
-  Image,
-  Platform,
-} from "react-native";
+import { View, TextInput, TouchableOpacity, Text, Alert, ActivityIndicator, ScrollView, Image, Platform,} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { styles } from "../style/login.styles";
