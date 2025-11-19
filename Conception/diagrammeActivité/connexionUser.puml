@@ -6,7 +6,6 @@ start
 :Arrive sur la page de connexion;
 if (possède un compte?) then (non)
     :Clique sur le bouton inscription;
-    :Rentre son pseudo;
     :Rentre son email;
     |Serveur|
     while (email deja enregistré?) is (oui)

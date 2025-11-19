@@ -2,11 +2,10 @@
 left to right direction
 title Diagramme de Déploiement
 
-node "Client" as Cl {
-    component Browser as BR
+node "Client Mobile" as Cl {
+    component ReactNativeApp as BR
 }
 node "Serveur Web" as SW {
-    component nginx 
     component PHP as PHP 
     artifact Symfony
     
@@ -14,16 +13,15 @@ node "Serveur Web" as SW {
 database "Base de Données" as DB {
     component MySQL 
 }
-node "Messagerie" {
-    component mailto as MSG
-}
+' node "Messagerie" {
+'     component mailto as MSG
+' }
 
 Cl -- SW :https
-nginx ..> PHP :execute
 PHP ..> Symfony :utilse
 Symfony -> MySQL :ORM doctrine
 SW -- DB: TCP 
-SW -- MSG :SMTP
+' SW -- MSG :SMTP
 
 
 @enduml

@@ -12,9 +12,10 @@ class V as "Visitor"{
 }
 
 class U as "Utilisateur"{
-    -nom : string
     -email : string
     -password: string
+    -nom: string
+    -siret: string
     +ajouterFavoris()
     +modifCompte()
 }

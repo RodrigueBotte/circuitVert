@@ -37,7 +37,7 @@ final class ApiRegisterController extends AbstractController
         // Attribution automatily of the role
         if ($data['type'] === 'pro') {
             $user->setNom($data['nom']);
-            $user->setSirret($data['sirret']);
+            $user->setSirret($data['siret']);
             $user->setRoles(['ROLE_PRO']);
         }else{
             $user->setRoles(['ROLE_USER']);
