@@ -148,9 +148,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->siret;
     }
 
-    public function setSirret(?string $sirret): self
+    public function setSirret(?string $siret): self
     {
-        $this->siret = $sirret;
+        $this->siret = $siret;
         return $this;
     }
 

@@ -28,10 +28,10 @@ final class UserController extends AbstractController
             'roles' => $user->getRoles(),
         ];
 
-        // Ajouter nom et sirret si c'est un professionnel
+        // Ajouter nom et siret si c'est un professionnel
         if ($user->getType() === 'pro') {
             $response['nom'] = $user->getNom();
-            $response['sirret'] = $user->getSirret();
+            $response['siret'] = $user->getSirret();
         }
 
         return $this->json($response);
@@ -63,8 +63,8 @@ final class UserController extends AbstractController
             if (isset($data['nom'])) {
                 $user->setNom($data['nom']);
             }
-            if (isset($data['sirret'])) {
-                $user->setSirret($data['sirret']);
+            if (isset($data['siret'])) {
+                $user->setSirret($data['siret']);
             }
         }
 

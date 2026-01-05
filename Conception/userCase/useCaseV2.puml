@@ -33,24 +33,23 @@ package "circuitVert" {
     usecase "modifier des informations du site" as uc21 #LightGoldenRodYellow
     usecase "valider l'incription des fermes" as uc22 #LightGoldenRodYellow
 
-    usecase "modifier son pseudo" as uc23
-    usecase "modifier son mot de passe" as uc24
-    usecase "modifier son email" as uc25
+    usecase "modifier son mot de passe" as uc23
+    usecase "modifier son email" as uc24
 
-    usecase "modifier une description" as uc26
-    usecase "supprimer une description" as uc27
+    usecase "modifier une description" as uc25
+    usecase "supprimer une description" as uc26
 
-    usecase "modifier une photo" as uc28
-    usecase "supprimer une photo" as uc29
+    usecase "modifier une photo" as uc27
+    usecase "supprimer une photo" as uc28
 
-    usecase "modifier un horaire" as uc30
-    usecase "supprimer un horaire" as uc31
+    usecase "modifier un horaire" as uc29
+    usecase "supprimer un horaire" as uc30
 
-    usecase "modifier une adresse ou point de vente" as uc32
-    usecase "supprimer une adresse ou point de vente" as uc33
+    usecase "modifier une adresse ou point de vente" as uc31
+    usecase "supprimer une adresse ou point de vente" as uc32
 
-    usecase "modifier un mode de payement" as uc34
-    usecase "supprimer un mode de payement" as uc35
+    usecase "modifier un mode de payement" as uc33
+    usecase "supprimer un mode de payement" as uc34
 }
 
 V --> uc1
@@ -87,19 +86,18 @@ uc22 ..> uc10 #Violet :include
 
 uc23 ..> uc12 :extend
 uc24 ..> uc12 :extend
-uc25 ..> uc12 :extend
 
+uc25 ..> uc14 :extend
 uc26 ..> uc14 :extend
-uc27 ..> uc14 :extend
 
+uc27 ..> uc15 :extend
 uc28 ..> uc15 :extend
-uc29 ..> uc15 :extend
 
+uc29 ..> uc16 :extend
 uc30 ..> uc16 :extend
-uc31 ..> uc16 :extend
 
+uc31 ..> uc17 :extend
 uc32 ..> uc17 :extend
-uc33 ..> uc17 :extend
 
+uc33 ..> uc18 :extend
 uc34 ..> uc18 :extend
-uc35 ..> uc18 :extend
