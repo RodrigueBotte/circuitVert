@@ -1,29 +1,32 @@
-@startuml diagramme de deploiement
+@startuml diagramme_deploiement
 left to right direction
-title Diagramme de Déploiement
+title "Diagramme de Déploiement - CircuitVert"
 
-node "Client" as Cl {
-    component Browser as BR
-}
-node "Serveur Web" as SW {
-    component nginx 
-    component PHP as PHP 
-    artifact Symfony
-    
-}
-database "Base de Données" as DB {
-    component MySQL 
-}
-node "Messagerie" {
-    component mailto as MSG
+node "Client" as Client {
+    component "Navigateur Web\n(React Native / Web)" as Browser
 }
 
-Cl -- SW :https
-nginx ..> PHP :execute
-PHP ..> Symfony :utilse
-Symfony -> MySQL :ORM doctrine
-SW -- DB: TCP 
-SW -- MSG :SMTP
+node "Serveur Web" as WebServer {
+    component "Nginx\n(Reverse Proxy / Web Server)" as Nginx
+    component "PHP-FPM\n(Interpréteur PHP)" as PHP_FPM
+    artifact "Symfony Framework\n+ Doctrine ORM" as Symfony
+}
 
+node "Service Messagerie" as MailService {
+    component "SMTP Server\n(Mailtrap / SendGrid)" as SMTP
+}
+
+database "Base de Données" as Database {
+    component "MySQL\n(5.7+)" as MySQL
+}
+
+' Relations de communication
+
+Client --> Nginx : HTTPS (443)
+Nginx --> PHP_FPM : FastCGI (9000)
+PHP_FPM --> Symfony : Requêtes PHP / Exécution
+Symfony --> MySQL : Doctrine ORM / Requêtes SQL
+WebServer --> SMTP : SMTP (587)
+SMTP -.-> Nginx : Retour / Réponse
 
 @enduml

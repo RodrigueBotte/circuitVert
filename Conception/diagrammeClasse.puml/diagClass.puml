@@ -1,53 +1,69 @@
 @startuml CircuitVert
-
-title "Diagramme de classes CircuitVert"
+title "Diagramme de classes CircuitVert - Version Corrigée"
 left to right direction
 
-class V as "Visitor"{
+' Classe parent abstraite
+abstract class Personne {
+    -nom: string
+    -email: string
+    -password: string
+}
+
+' Classes utilisateurs
+class Visiteur {
     +inscription()
     +seConnecter()
+}
+
+class Utilisateur {
+    +ajouterFavoris()
+    +modifierCompte()
     +rechercherFermier()
     +activeGeolocalisation()
     +contactAdmin()
 }
 
-class U as "Utilisateur"{
-    -nom : string
-    -email : string
-    -password: string
-    +ajouterFavoris()
-    +modifCompte()
-}
-
-class F as "Farmer"{
-    +ajout/supp/modifDesc()
-    +ajout/supp/modifPhoto()
-    +ajout/supp/modifHoraire()
-    +ajout/supp/modifAdresse()
-    +ajout/supp/modifpaiement()
+class Fermier {
+    +ajouterDesc()
+    +supprimerDesc()
+    +modifierDesc()
+    +ajouterPhoto()
+    +supprimerPhoto()
+    +modifierPhoto()
+    +ajouterHoraire()
+    +supprimerHoraire()
+    +modifierHoraire()
+    +ajouterAdresse()
+    +supprimerAdresse()
+    +modifierAdresse()
+    +ajouterPaiement()
+    +supprimerPaiement()
+    +modifierPaiement()
     +choixCatProduit()
 }
-class Desc as "Description"{
-    -nom entreprise: string
-    -photo : string
-    -horaire : int
-    -adresse : string
-    -moyenPaiement : string
-}
 
-class Supp as "Suppression de compte"{
-    +supprimerCompte()
-}
-
-class A as "Admin"{
+class Admin {
     +supprimerUser()
     +modifierSite()
-    +validerInscFarmer()
+    +validerInscFarmier()
 }
 
-V "1" <|-- "1" U :herite
-U "1" <|-- "1" F :herite
-F "1" <|-- "1" A :herite
-Supp "1" --> "1" U :extend
-Supp "1" --> "1" F :extend
-Desc "1" --> "1" F :information
+' Classe métier
+class Description {
+    -nomEntreprise: string
+    -photo: string
+    -horaire: int
+    -adresse: string
+    -moyenPaiement: string
+}
+
+' Relations d'héritage
+Personne <|-- Visiteur
+Personne <|-- Utilisateur
+Utilisateur <|-- Fermier
+Utilisateur <|-- Admin
+
+' Association
+Fermier "1" --> "*" Description : gère
+
+@enduml
